@@ -6,6 +6,7 @@ from django.views.generic import TemplateView
 import pickle
 import sklearn
 import pandas as pd
+from pages.models import Item, ToDoList
 
 
 def homePageView(request):
@@ -75,3 +76,11 @@ def results(request, choice, gmat):
     return render(request, 'results.html', {'choice': workExperience, 'gmat': gmat,
                                             'prediction': singlePrediction})
 
+
+def todos(request):
+    print("*** Inside todos()")
+    items = Item.objects
+    itemErrandDetail = items.select_related('todolist')
+    print(itemErrandDetail[0].todolist.name)
+    return render(request, 'ToDoItems.html',
+                  {'ToDoItemDetail': itemErrandDetail})
