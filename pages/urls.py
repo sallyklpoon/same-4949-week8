@@ -1,5 +1,5 @@
 # pages/urls.py
-from django.urls import path
+from django.urls import path, include
 from .views import homePageView, aboutPageView, sallyPageView, \
     homePost, results, todos, register, message
 
@@ -12,4 +12,5 @@ urlpatterns = [
     path('todos', todos, name='todos'),
     path("register/", register, name="register"),
     path("message/<str:msg>/<str:title>", message, name="message"),
+    path('', include("django.contrib.auth.urls")),
 ]
