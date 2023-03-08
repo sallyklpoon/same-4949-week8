@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<br/><br/><br/><br/>
+<h3>{{title}}</h3>
+{{msg}}
+{% endblock content %}
+
+Then, in pages/views.py add the action function to pages/views.py
+def message(request, msg, title):
+    return render(request, 'message.html', {'msg': msg, 'title': title })

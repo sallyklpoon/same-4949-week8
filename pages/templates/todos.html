@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>ToDO Items page</h1>
+    <table class="table">
+        <!-- table headers -->
+        <tr>
+            <th  scope="col">List Name</th>
+            <!-- empty column for spacing-->
+            <th  scope="col">&nbsp;</th>
+             <th  scope="col">List ID</th>
+             <th  scope="col">&nbsp;</th>
+             <th  scope="col">Task</th>
+             <th  scope="col">&nbsp;</th>
+             <th scope="col">Item ID</th>
+        </tr>
+{% for todo in ToDoItemDetail %}
+        <!-- rows of data -->
+        <tr>
+            <!-- cells -->
+            <td  scope="col">{{todo.todolist.name}}</td>
+            <!-- empty column for spacing-->
+            <td  scope="col">&nbsp;</td>
+            <td  scope="col">{{todo.todolist.id}}</td>
+            <td>&nbsp;</td>
+            <td  scope="col">{{todo.text}}</td>
+            <td>&nbsp;</td>
+            <td  scope="col">{{todo.id}}</td>
+        </tr>
+{% endfor %}
+</table>
+{% endblock content %}
+

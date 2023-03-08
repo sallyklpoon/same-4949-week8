@@ -7,6 +7,8 @@ import pickle
 import sklearn
 import pandas as pd
 from pages.models import Item, ToDoList
+from django.shortcuts import render, redirect
+from .forms import RegisterForm
 
 
 def homePageView(request):
@@ -82,5 +84,24 @@ def todos(request):
     items = Item.objects
     itemErrandDetail = items.select_related('todolist')
     print(itemErrandDetail[0].todolist.name)
-    return render(request, 'ToDoItems.html',
+    return render(request, 'todos.html',
                   {'ToDoItemDetail': itemErrandDetail})
+
+
+def register(response):
+    # Handle POST request.
+    if response.method == "POST":
+        form = RegisterForm(response.POST)
+        if form.is_valid():
+            form.save()
+
+            return HttpResponseRedirect(reverse('message',
+                                                kwargs={'msg': "Your are registered.", 'title': "Success!"}, ))
+
+    # Handle GET request.
+    else:
+        form = RegisterForm()
+    return render(response, "registration/register.html", {"form":form})
+
+def message(request, msg, title):
+    return render(request, 'message.html', {'msg': msg, 'title': title })

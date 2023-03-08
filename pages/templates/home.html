@@ -12,15 +12,29 @@
 
 <!-- Show radio button list named 'choice' -->
 {% for choice in mynumbers %}
-    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice }}">
-    <label for="choice{{ forloop.counter }}">{{ choice }}</label><br>
+<div class="form-check">
+    <input class="form-check-input" type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice }}">
+    <label class="form-check-label" for="choice{{ forloop.counter }}">
+        {{ choice }}
+    </label>
+</div>
 {% endfor %}
 
 <h3>GMAT Score</h3>
-<input type="text" id="gmat" name="gmat"><br><br>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default">GMAT Score</span>
+        </div>
+        <input type="text" name="gmat" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+    </div>
+
 
 <!—Submit button is also contained in the form -->
-<input type="submit" value="POST YOUR CHOICE">
+
+<div class="input-group mb-3">
+    <button type="submit" class="btn btn-dark form-control">POST YOUR CHOICE</button>
+</div>
+
 </form>
 <!-- End of form. -->
 
